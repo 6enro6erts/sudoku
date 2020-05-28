@@ -36,11 +36,13 @@ int **gridNew(void){
     }
 }
 
+/***************** gridSet *********************/
 void gridSet(int **grid, int row, int col, int value){
 	if (grid != NULL)
 		grid[row][col] = value;
 }
 
+/**************** gridGet ********************/
 int gridGet(int **grid, int row, int col){
 	if (grid != NULL)
 		return grid[row][col];
