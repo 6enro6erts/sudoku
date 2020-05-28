@@ -17,8 +17,10 @@
 #include <unistd.h>
 
 /******************* solve *****************/
-/*takes a grid and a value that says whether or not to print*/
-bool solve(int **grid, bool print){
+/*takes a grid and a value that says whether or not to print
+* return number of solutions 
+*/
+int solve(int **grid, bool print){
     gimmeScanner(grid); //fill in all gimmes (only one possible value)
 
     int solcount = 0; //track number of solutions 
@@ -81,10 +83,5 @@ bool solve(int **grid, bool print){
     }
     bag_delete(stack,nodeDelete); //clear bags
     bag_delete(backtrace,nodeDelete);
-    if(solcount == 1) return true; //return true on unique
-    else if(solcount == 0){ 
-        printf("There are no solutions\n");
-        return false;
-    } 
-    else return false;
+    return(solcount);
 }

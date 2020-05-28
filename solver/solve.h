@@ -17,8 +17,7 @@
 
 /******************* solve *****************/
 /*takes a grid and a value that says whether or not to print
-RETURN:
-* True on only one solution
-* False on no or multiple solutions*/
-bool solve(int **grid, bool print);
+* return number of solutions 
+*/
+int solve(int **grid, bool print);
 
