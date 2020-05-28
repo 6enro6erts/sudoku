@@ -104,9 +104,7 @@ bag_extract(bag_t *bag)
 }
 /**************** bag_peek() ******************/
 /*return the hop item of the bag without removing*/
-void *
-bag_peek(bag_t *bag)
-{
+void *bag_peek(bag_t *bag){
   if (bag == NULL) {
     return NULL;              // bad bag
   } else if (bag->head == NULL) {

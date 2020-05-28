@@ -9,6 +9,7 @@
  *
  * David Kotz, April 2016, 2017, 2019
  * Updated by Temi Prioleau, January 2020
+ * Peek method added by Cmedian, Dartmouth 20S 
  */
 
 #ifndef __BAG_H
