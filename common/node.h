@@ -18,10 +18,11 @@ typedef struct node node_t;  // visible to to users outside of the module
 node_t *nodeNew(int row, int column, int value);
 /*delete a node*/
 void nodeDelete(node_t* node);
-/*getters and setters for nodes*/
+/************* get methods *****************/
 int nodeGetRow(node_t *node);
 int nodeGetColumn(node_t *node);
 int nodeGetValue(node_t *node);
-void nodeSetRow(node_t *node);
-void nodeSetColumn(node_t *node);
-void nodeSetValue(node_t *node);
+/*************** set methods **************/
+void nodeSetRow(node_t *node, int row);
+void nodeSetColumn(node_t *node, int row);
+void nodeSetValue(node_t *node, int row);

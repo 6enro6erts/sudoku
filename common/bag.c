@@ -5,6 +5,7 @@
  *
  * David Kotz, April 2016, 2017, 2019
  * Temi Prioleau, January 2020
+ * lightly edited C-median Dartmouth CS50
  */
 
 #include <stdio.h>
