@@ -10,8 +10,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "grid.h"
+#include "node.h"
+#include "shared.h"
+#include <unistd.h>
 
 /******************* solve *****************/
-/*takes a grid and a value that says whether or not to print*/
-void solve(int **grid, bool print);
+/*takes a grid and a value that says whether or not to print
+RETURN:
+* True on only one solution
+* False on no or multiple solutions*/
+bool solve(int **grid, bool print);
 

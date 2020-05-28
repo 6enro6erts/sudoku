@@ -37,8 +37,10 @@ there are no more*/
 void gimmeScanner(int **grid);
 
 /****************** pushGuesses **************/
-/*takes a grid and bag, and pushes all valid guesses into the bag*/
-void pushGuesses(node_t *node, int **grid, bag_t *bag);
+/*takes a grid and bag, and pushes all valid guesses into the bag
+Return True on at least one guess added to bag
+Return false on null node or no valid guesses*/
+bool pushGuesses(node_t *node, int **grid, bag_t *bag);
 
 /**************** getNextNode ***************/
 /*gets the next zero in the grid and returns a node to that location*/

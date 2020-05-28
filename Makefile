@@ -31,13 +31,15 @@ libs:
 	$(MAKE) -C creator
 
 test: $(PROG)
-	./$(PROG) solve <solvableTestGrid
+	./$(PROG) solve <testgrids/test1
+	./$(PROG) solve <testgrids/test2
 
 clean:
 	rm -rf *.o
 	rm -rf testing.out
 	rm -rf *.dSYM
 	rm -rf $(PROG)
+	rm -rf core
 	$(MAKE) -C common clean
 	$(MAKE) -C creator clean
 	$(MAKE) -C solver clean

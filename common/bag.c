@@ -102,6 +102,21 @@ bag_extract(bag_t *bag)
     return item;
   }
 }
+/**************** bag_peek() ******************/
+/*return the hop item of the bag without removing*/
+void *
+bag_peek(bag_t *bag)
+{
+  if (bag == NULL) {
+    return NULL;              // bad bag
+  } else if (bag->head == NULL) {
+    return NULL;              // bag is empty
+  } else {
+    void *item = (bag->head)->item;     // the item to retur
+    return item;
+  }
+}
+
 
 /**************** bag_print() ****************/
 /* see bag.h for description */

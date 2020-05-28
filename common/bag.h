@@ -61,6 +61,19 @@ void bag_insert(bag_t *bag, void *item);
  *   the order in which items are removed from the bag is undefined.
  */
 void *bag_extract(bag_t *bag);
+/**************** bag_peek() ******************/
+/*return the top item of the bag without removing
+ *
+ * Caller provides:
+ *   valid bag pointer.
+ * We return:
+ *   return pointer to an item, or NULL if bag is NULL or empty.
+ * Caller is responsible for:
+ * Note:
+ *   the order in which items are removed from the bag is a stack
+ *   the item remains in the bag, so the caller cannot free the item
+  */
+void *bag_peek(bag_t *bag);
 
 /**************** bag_print ****************/
 /* Print the whole bag. 

@@ -59,7 +59,10 @@ bool checkNode(node_t *node, int **grid){
                     return false;
                 }
             }
+            column++;
         }
+        columnCount = 0;
+        row++;
     }
     return true;
 }
@@ -112,8 +115,11 @@ void gimmeScanner(int **grid){
 }
 
 /****************** pushGuesses **************/
-/*takes a grid and bag, and pushes all valid guesses into the bag*/
-void pushGuesses(node_t *node, int **grid, bag_t *bag){
+/*takes a grid and bag, and pushes all valid guesses into the bag
+Return True on at least one guess added to bag
+Return false on null node or no valid guesses*/
+bool pushGuesses(node_t *node, int **grid, bag_t *bag){
+    bool returnFlag = false;
     if(node != NULL){
         int row = nodeGetRow(node);
         int column = nodeGetColumn(node);
@@ -122,10 +128,12 @@ void pushGuesses(node_t *node, int **grid, bag_t *bag){
             testnode = nodeNew(row,column,value);
             if(checkNode(testnode,grid)){
                 bag_insert(bag,testnode);
+                returnFlag = true;
             }
             else nodeDelete(testnode);
         }
     }
+    return returnFlag;
 }
 
 /**************** getNextNode ***************/
@@ -152,8 +160,8 @@ bool gridCheck(int **grid){
                 nodeDelete(node);
                 return false;
             }
+            nodeDelete(node);
         }
     }
-    nodeDelete(node);
     return true;
 }
