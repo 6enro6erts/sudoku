@@ -50,6 +50,8 @@ solve ouputs an array of integers that represents the solved sudoku
 
         1. check if its unique
 
+            1. if unique end
+
 ### solve
 
 STEP 1: -at the end if possible
@@ -69,15 +71,18 @@ STEP 2:
     1. nextNode = getNode(currentNode):
 
     2. if an empty node is adjacent to currentNode
+
+        1. add the empty node the backtrace
    
-        1.for all guesses for the next node
+        2. for all guesses for the next node
 
-    3. checkNode a guess at the next node
+        3. check a guess at the next node
 
-        1.if valid push that guess to the bag
+            1. if at least one valid push that guess to the bag
 
-        2.else checkGrid to see if its solved, store solution
+            2. else backtrace to the next item in the stack
 
+    3. if no adjacent empty node, check grid and store solution
 
 ## Dataflow through modules
 
