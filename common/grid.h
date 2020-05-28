@@ -1,3 +1,10 @@
+/*
+ * grid.h - a header for grid.c
+ *
+ * a grid is a 9x9 grid that is used to store the values for a sudoku puzzle
+ * C-median Dartmouth CS50 20S
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
