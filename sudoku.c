@@ -9,23 +9,17 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "node.h"
+#include "solve.h"
+#include "shared.h"
+#include "grid.h"
 
-
-/**************** local types ************************/
-typedef struct node{
-  int row;
-  int column;
-  int value;
-} node_t;
 
 /********************* local function headers ***************/
 void create(void);
-void solve(void);
 int **newGrid(void);
 void deleteGrid(int **grid);
-node_t *newNode(int row, int column, int value);
-void deleteNode(node_t* node);
-bool checkNode(node_t *node, int **grid);
+
 
 
 /********************** main *******************/
@@ -38,7 +32,9 @@ int main(int argc, char *argv[]){
         create();
     }
     else if(strcmp(argv[1],"solve")==0){
-        solve();
+        int **grid = newGrid();
+        solve(grid,true);
+        deleteGrid(grid);
     }
     else{
         fprintf(stderr,"Error, not a valid command\n");
@@ -52,24 +48,6 @@ int main(int argc, char *argv[]){
 void create(void){
     printf("called create\n");
 }
-
-/***************** solve *********************/
-
-void solve(void){
-    int **grid = newGrid();
-    if(grid == NULL){
-        printf("grid is null\n");
-    }
-    node_t *testnode = newNode(8,1,9);
-    if(checkNode(testnode,grid)){
-        printf("valid node!\n");
-    }
-    else printf("invalid node!\n");
-    deleteNode(testnode);
-    deleteGrid(grid);
-
-}
-
 
 /****************** newGrid ****************/
 /*allocates a grid and reads it from stdin
@@ -103,73 +81,3 @@ void deleteGrid(int **grid){
     free(grid);
 }
 
-/****************** newNode ****************/
-/*initialize a new node to zero*/
-node_t *newNode(int row, int column, int value){
-    node_t *node = malloc(sizeof(node_t));
-    if(node == NULL){
-        return NULL;
-    }
-    else{
-        node->row = row;
-        node->column = column;
-        node->value=value;
-    }
-    return(node);
-}
-
-
-/***************** deleteNode **************/
-/*frees memory from a node */
-void deleteNode(node_t* node){
-    free(node);
-}
-
-/**************** checkNode ****************/
-/*checks that a note is correctly placed:
-return
-True - there are no conflicts 
-False - there is an error with the placement
-
-Note: zeros are IGNORED, so a blank grid with one node will return true
-*/
-bool checkNode(node_t *node, int **grid){
-    //check row
-    int row,column;
-    row = node->row;
-    for(column = 0; column<9;column++){
-        if(node->column!=column){
-            if(grid[row][column]==node->value){
-                return false;
-            }
-        }
-    }
-
-    //check column
-    column = node->column;
-    for(row = 0; row<9;row++){
-        if(node->row!=row){
-            if(grid[row][column]==node->value){
-                return false;
-            }
-        }
-    }
-
-    //check square
-    int topLeftRow, topLeftColumn;
-    int rowCount = 0;
-    int columnCount = 0;
-
-    topLeftRow = ((node->row)/3)*3; //integer divide to get 0,1,2 then multiply by 3 to get the correct row
-    topLeftColumn = ((node->column)/3)*3; //same as row
-    for(row = topLeftRow;rowCount<3;rowCount++){
-        for(column = topLeftColumn;columnCount<3;columnCount++){
-            if(node->row != row || node->column != column){
-                if(grid[row][column]==node->value){
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
-}
