@@ -42,7 +42,10 @@ void gridSet(int **grid, int row, int col, int value){
 }
 
 int gridGet(int **grid, int row, int col){
-	return grid[row][col];
+	if (grid != NULL)
+		return grid[row][col];
+	else
+		return -1;
 }
 
 /***************** deleteGrid ************/
