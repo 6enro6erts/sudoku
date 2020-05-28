@@ -40,6 +40,7 @@ clean:
 	rm -rf *.dSYM
 	rm -rf $(PROG)
 	rm -rf core
+	rm -rf vgcore.*
 	$(MAKE) -C common clean
 	$(MAKE) -C creator clean
 	$(MAKE) -C solver clean
