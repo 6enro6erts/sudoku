@@ -50,6 +50,14 @@ int gridGet(int **grid, int row, int col){
 		return -1;
 }
 
+void gridPrint(int **grid){
+    for(int i = 0;i<9;i++){
+        for(int j=0;j<9;j++){
+            printf("%d ",grid[i][j]);
+        }
+        printf("\n");
+    }
+}
 /***************** deleteGrid ************/
 void gridDelete(int **grid){
     for(int i = 0;i<9;i++){

@@ -31,7 +31,7 @@ libs:
 	$(MAKE) -C creator
 
 test: $(PROG)
-	./$(PROG) solve <testgrid
+	./$(PROG) solve <solvableTestGrid
 
 clean:
 	rm -rf *.o

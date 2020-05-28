@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include "grid.h"
 #include "node.h"
+#include "bag.h"
 
 
 
@@ -63,7 +64,7 @@ bool checkNode(node_t *node, int **grid){
     return true;
 }
 
-/************************** gimme **************/
+/********************* gimme **************/
 /*checks to see if the given node has only one valid solution
 return:
 true: yes a gimme, value is set to correct value in grid and node
@@ -79,6 +80,7 @@ bool gimme(node_t *node,int **grid){
             valueCount++;
         }
     }
+
     if(valueCount ==1){
         nodeSetValue(node,solution);
         grid[nodeGetRow(node)][nodeGetColumn(node)] = solution;
@@ -87,4 +89,71 @@ bool gimme(node_t *node,int **grid){
         nodeSetValue(node,0);
         return false;
     }
+}
+/******************* gimmeScanner **************/
+/*scans a board and fills it with integers of gimmes until
+there are no more*/
+void gimmeScanner(int **grid){
+    node_t *node;
+    for(int gimmeCount = 1; gimmeCount>0;){
+        gimmeCount = 0;
+        for(int i = 0; i<9;i++){
+            for(int j = 0;j<9;j++){
+                if(grid[i][j]==0){
+                    node = nodeNew(i,j,grid[i][j]);
+                    if(gimme(node,grid)){
+                        gimmeCount++;
+                    }
+                    nodeDelete(node);
+                }
+            }
+        }
+    }
+}
+
+/****************** pushGuesses **************/
+/*takes a grid and bag, and pushes all valid guesses into the bag*/
+void pushGuesses(node_t *node, int **grid, bag_t *bag){
+    if(node != NULL){
+        int row = nodeGetRow(node);
+        int column = nodeGetColumn(node);
+        node_t *testnode;
+        for(int value = 1;value<=9;value++){
+            testnode = nodeNew(row,column,value);
+            if(checkNode(testnode,grid)){
+                bag_insert(bag,testnode);
+            }
+            else nodeDelete(testnode);
+        }
+    }
+}
+
+/**************** getNextNode ***************/
+/*gets the next zero in the grid and returns a node to that location*/
+node_t *getNextNode(int **grid){
+    for(int i=0; i<9;i++){
+        for(int j=0;j<9;j++){
+            if(grid[i][j]==0){
+                return(nodeNew(i,j,0));
+            }
+        }
+    }
+    return NULL;
+}
+
+/**************** gridCheck ***************/
+/*checks to see if a given board is a solution*/
+bool gridCheck(int **grid){
+    node_t *node;
+    for(int i=0;i<9;i++){
+        for(int j=0;j<9;j++){
+            node = nodeNew(i,j,grid[i][j]);
+            if(!checkNode(node,grid)){
+                nodeDelete(node);
+                return false;
+            }
+        }
+    }
+    nodeDelete(node);
+    return true;
 }

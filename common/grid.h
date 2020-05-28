@@ -33,3 +33,9 @@ int gridGet(int **grid, int row, int col);
  *
  */
 void gridDelete(int **grid);
+
+/*
+ * Prints the grid to stdout
+ *
+ */
+void gridPrint(int **grid);
