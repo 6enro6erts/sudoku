@@ -60,24 +60,23 @@ rank based on number of filled in surrounding squares (num of valid solutions) a
 
 STEP 2:
 
-validate guesses for first node
+1.validate guesses for first node
 
-push the first node guesses into bag
+2.push the first node guesses into bag
 
-repeat until we try every number:
+3. repeat until we try every number:
 
-  nextNode = getNode(currentNode):
+    1. nextNode = getNode(currentNode):
 
-    if an empty node is adjacent to currentNode
+    2. if an empty node is adjacent to currentNode
+   
+        1.for all guesses for the next node
 
-        for all guesses for the next node
+    3. checkNode a guess at the next node
 
-        checkNode a guess at the next node
+        1.if valid push that guess to the bag
 
-            if valid push that guess to the bag
-    else
-
-        checkGrid to see if its solved, store solution
+        2.else checkGrid to see if its solved, store solution
 
 
 ## Dataflow through modules
