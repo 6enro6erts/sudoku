@@ -83,6 +83,6 @@ int solve(int **grid, bool print){
     }
     bag_delete(stack,nodeDelete); //clear bags
     bag_delete(backtrace,nodeDelete);
-    printf("solcount: %d\n", solcount);
+   
     return(solcount);
 }
