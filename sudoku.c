@@ -23,10 +23,14 @@ int main(int argc, char *argv[]){
         return 1;
     }
     if(strcmp(argv[1],"create")==0){
-        create();
+    	int **grid = gridNew();
+	create(grid);
+	gridPrint(grid);
+	gridDelete(grid);
     }
     else if(strcmp(argv[1],"solve")==0){
         int **grid = gridNew();
+	gridCopy(grid);
         solve(grid,true);   
         gridDelete(grid);
     }

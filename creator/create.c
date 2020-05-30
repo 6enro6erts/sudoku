@@ -10,10 +10,6 @@
 #include "shared.h"
 
 /***************** create **********************/
-void create(void){
-    int** grid; 
-    grid = gridNew();  
-    gridFill(grid); 
-    gridPrint(grid); 
-    gridDelete(grid);
+void create(int** grid){
+	gridFill(grid); 
 }

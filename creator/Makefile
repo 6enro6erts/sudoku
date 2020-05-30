@@ -5,7 +5,7 @@
 # updated by Temi Prioleau, January 2020
 
 # PROG = 
-OBJS = create.o
+OBJS = create.o 
 LIB = create.a
 L = ../common
 LL = ../solve
@@ -20,7 +20,7 @@ CC = gcc
 $(LIB): $(OBJS)
 	ar cr $(LIB) $(OBJS)
 
-create.o: ../solver/solve.h ../common/node.h ../common/grid.h  ../common/node.h 
+create.o: ../solver/solve.h ../common/node.h ../common/grid.h  ../common/node.h  
 
 
 .PHONY: clean
