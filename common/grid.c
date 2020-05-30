@@ -80,10 +80,8 @@ bool checkValue(int **grid, int i, int j, int value){
     int row,column;
     row = i;
     for(column = 0; column < 9; column++){
-        printf("here. %d \n", column); 
         if( j !=column){
             if(grid[row][column] == value){
-                printf("returning false\n");
                 return false;
             }
         }
@@ -92,7 +90,6 @@ bool checkValue(int **grid, int i, int j, int value){
     //check column
     column = j;
     for(row = 0; row<9;row++){
-        printf("here now.\n");
         if(i !=row){
             if(grid[row][column] == value){
                 return false;
