@@ -22,7 +22,7 @@
 */
 int solve(int **grid, bool print){
     gimmeScanner(grid); //fill in all gimmes (only one possible value)
-
+    
     int solcount = 0; //track number of solutions 
     bag_t *stack = bag_new(); //create a bag to stack possibilities 
     bag_t *backtrace = bag_new(); //create a bag for backtracing 
@@ -86,5 +86,6 @@ int solve(int **grid, bool print){
     }
     bag_delete(stack,nodeDelete); //clear bags
     bag_delete(backtrace,nodeDelete);
+   
     return(solcount);
 }

@@ -6,4 +6,4 @@
 
  #include <stdio.h>
 /***************** create **********************/
-void create(void);
+void create(int** grid);
