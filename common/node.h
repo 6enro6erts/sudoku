@@ -12,7 +12,7 @@
 #include <stdbool.h>
 
 /**************** global types ****************/
-typedef struct node node_t;  // visible to to users outside of the module
+typedef struct node node_t;  // invisible to to users outside of the module
 
 /************** global functions *************/
 

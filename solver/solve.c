@@ -60,14 +60,17 @@ int solve(int **grid, bool print){
         }
         else{ //on full grid 
             if(gridCheck(grid)){  //check if it solves
-                if(print){ //if print is enabled 
-                    gridPrint(grid); //print the grid 
-                    printf("\n");
-                }
                 solcount++; //add to count of solutions 
+                if(solcount==1){
+                    if(print){ //if print is enabled 
+                        gridPrint(grid); //print the grid 
+                        printf("\n");
+                    }
+                }
+                else return solcount;
             }
             //same backtrace as above, here executed to jump back after checking a solution
-            //this may be unnecessary because I do not think we will ever check an invalid solution
+            //necessary to find multiple solutions
             if(!nodeSameLocation(currentNode,bag_peek(stack))){
                 while(!nodeSameLocation(bag_peek(stack),bag_peek(backtrace))){
                     btNode = bag_extract(backtrace);
