@@ -56,7 +56,7 @@ void gridFill(int **grid) {
 }
 
 void randFill(int **grid, int i, int j, int count) {
-    if ((rand() % 2) == 0 || count > 40) {
+    if ((rand() % 2) == 0 || count >= 40) {
         gridSet(grid, i, j, 0); 
     }
     else {
@@ -69,6 +69,7 @@ void randFill(int **grid, int i, int j, int count) {
                     success = true; 
                     count++; 
                 }
+                else value = rand() %10;
             }
         }
     }
@@ -82,6 +83,7 @@ bool checkValue(int **grid, int i, int j, int value){
         printf("here. %d \n", column); 
         if( j !=column){
             if(grid[row][column] == value){
+                printf("returning false\n");
                 return false;
             }
         }
