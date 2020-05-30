@@ -33,6 +33,10 @@ libs:
 test: $(PROG)
 	./$(PROG) solve <testgrids/test1
 	./$(PROG) solve <testgrids/test2
+	./$(PROG) solve <testgrids/test3
+testcreate: $(PROG)
+	./$(PROG) create
+
 
 clean:
 	rm -rf *.o

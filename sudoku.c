@@ -41,8 +41,9 @@ int main(int argc, char *argv[]){
     }
     else if(strcmp(argv[1],"solve")==0){
         int **grid = gridNew();
-	gridCopy(grid);
-        solve(grid,true);   
+        gridCopy(grid);
+        int numSol = solve(grid,true);   
+        printf("number of solutions is: %d\n",numSol);
         gridDelete(grid);
     }
     else{
