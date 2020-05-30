@@ -14,6 +14,7 @@
 #include "shared.h"
 #include "grid.h"
 #include "create.h"
+#include<time.h>
 
 
 /********************** main *******************/
@@ -23,8 +24,18 @@ int main(int argc, char *argv[]){
         return 1;
     }
     if(strcmp(argv[1],"create")==0){
-    	int **grid = gridNew();
-	create(grid);
+    	srand(time(NULL));
+	int **grid = gridNew();
+	bool success = false;
+	while (success != true) {
+		create(grid);
+		if (solve(grid, false) == 1) {
+			success = true;
+		}
+		else {
+			gridEmpty(grid);
+		}
+	}
 	gridPrint(grid);
 	gridDelete(grid);
     }
