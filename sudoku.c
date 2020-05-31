@@ -25,26 +25,31 @@ int main(int argc, char *argv[]){
     }
     if(strcmp(argv[1],"create")==0){
     	srand(time(NULL));
-	int **grid1 = gridNew();
-	int **grid3 = gridNew();
-	bool success = false;
-	while (success != true) {
-		create(grid1);
-		int **grid2 = gridNew();
-		gridTransfer(grid2, grid1);
-		if (solve(grid1, false) == 1) {
-			gridTransfer(grid3, grid2);
-			success = true;
-			gridDelete(grid2);
-		}
-		else {
-			gridDelete(grid2);
-			gridEmpty(grid1);
-		}
-	}
-	gridPrint(grid3);
-	gridDelete(grid3);
-	gridDelete(grid1);
+//	int **grid1 = gridNew();
+//	int **grid3 = gridNew();
+//	bool success = false;
+//	while (success != true) {
+//		create(grid1);
+//		int **grid2 = gridNew();
+//		gridTransfer(grid2, grid1);
+//		if (solve(grid1, false) == 1) {
+//			gridTransfer(grid3, grid2);
+//			success = true;
+//			gridDelete(grid2);
+//		}
+//		else {
+//			gridDelete(grid2);
+//			gridEmpty(grid1);
+//		}
+//	}
+//	gridPrint(grid3);
+//	gridDelete(grid3);
+//	gridDelete(grid1);
+	int **grid = gridNew();
+	gridEmpty(grid);
+	gridPrint(grid);
+	solve(grid, false);
+	gridPrint(grid);
     }
     else if(strcmp(argv[1],"solve")==0){
         int **grid = gridNew();

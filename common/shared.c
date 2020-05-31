@@ -13,7 +13,9 @@
 #include "node.h"
 #include "bag.h"
 
-
+/************** Declarations ***************/
+bag_t * randomValueBag();
+bool arrayCheck(int i, int *trackerArray);
 
 /**************** checkNode ****************/
 /*checks that a note is correctly placed:
@@ -124,17 +126,58 @@ bool pushGuesses(node_t *node, int **grid, bag_t *bag){
         int row = nodeGetRow(node);
         int column = nodeGetColumn(node);
         node_t *testnode;
-        for(int value = 1;value<=9;value++){
-            testnode = nodeNew(row,column,value);
+	bag_t *valueBag = randomValueBag();
+        for(int i = 1;i<=9;i++){
+	    int value;
+	    node_t *valuenode;
+            valuenode = bag_extract(valueBag);
+	    value = nodeGetValue(valuenode);
+	    nodeDelete(valuenode);
+	    testnode = nodeNew(row,column,value);
             if(checkNode(testnode,grid)){
                 bag_insert(bag,testnode);
                 returnFlag = true;
             }
             else nodeDelete(testnode);
         }
+	bag_delete(valueBag, NULL);
     }
     return returnFlag;
 }
+
+/*************** randomValueBag ***************/  
+/*returns a bag containing a random ordering of the  
+ * integers 1-9; used by pushGuesses to in order to randomize  
+ * solve and create*/
+bag_t * randomValueBag() {
+	int i = 0;
+	int j = 0;
+	bag_t *returnBag = bag_new();
+	int trackerArray[9];
+	while (i < 9) {
+		int value = (rand() % 9) + 1;
+		if (!arrayCheck(value, trackerArray)) {
+			trackerArray[j] = value;
+			j++;
+			node_t *valueNode = nodeNew(1, 1, value);
+			bag_insert(returnBag, valueNode);
+			i++;
+		}
+	}
+	return returnBag;
+}
+
+/*************** arrayCheck ***************/
+/* checks whether given value is in given array*/
+bool arrayCheck(int i, int *trackerArray) {
+	for (int j = 0; j < 9; j++) {
+		if (i == trackerArray[j]) {
+			return true;
+		}
+	}
+	return false;
+}
+
 
 /**************** getNextNode ***************/
 /*gets the next zero in the grid and returns a node to that location*/

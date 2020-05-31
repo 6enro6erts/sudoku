@@ -42,6 +42,15 @@ Return True on at least one guess added to bag
 Return false on null node or no valid guesses*/
 bool pushGuesses(node_t *node, int **grid, bag_t *bag);
 
+/*************** randomValueBag **************/
+/* returns a bag containing integers 1-9 in random order; user  
+ * responsible for deallocating bag memory */
+bag_t * randomValueBag(void);
+
+/*************** arrayCheck ***************/
+/* checks whether given value is in given array*/
+bool arrayCheck(int i, int *trackerArray);
+
 /**************** getNextNode ***************/
 /*gets the next zero in the grid and returns a node to that location*/
 node_t *getNextNode(int **grid);

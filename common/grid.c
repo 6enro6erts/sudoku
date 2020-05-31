@@ -77,18 +77,19 @@ void gridTransfer(int **grid1, int **grid2) {
     	}
 }
 bool randFill(int **grid, int i, int j, int count) {
-    if (fiftyFifty() == 0 || count >= 40) {
-	gridSet(grid, i, j, 0);
-	return true;
-    }
-    else {
+    //if (fiftyFifty() == 0 || count >= 40) {
+//	gridSet(grid, i, j, 0);
+//	return true;
+  //  }
+    //else {
 	int v = 0;
 	bool exit = false;
 	while (v < 10 && !exit) {
         	int value = randNine();
         	if (value != 0) {    
                 	if (checkValue(grid, i, j, value)) {
-                    		gridSet(grid, i, j, value);  
+                    		printf("%d\n", value);
+				gridSet(grid, i, j, value);  
                     		count++;
 		    		return true;
                 	}
@@ -98,7 +99,7 @@ bool randFill(int **grid, int i, int j, int count) {
 		}
 	}
 	return false;
-    }
+   // }
 	
 }
 
