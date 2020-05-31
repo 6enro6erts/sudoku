@@ -9,6 +9,7 @@
 #include "grid.h"
 #include "shared.h"
 
+
 /***************** create **********************/
 void create(int** grid){
 	gridFill(grid); 

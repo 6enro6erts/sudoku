@@ -42,9 +42,14 @@ void gridPrint(int **grid);
 
 bool gridCopy(int **grid);
 
+void gridEmpty(int **grid);
+
 bool checkValue(int **grid, int i, int j, int value); 
 
 void gridFill(int **grid);
 
-void randFill(int **grid, int i, int j, int count);
+bool randFill(int **grid, int i, int j, int count);
 
+int fiftyFifty();
+
+int randNine();

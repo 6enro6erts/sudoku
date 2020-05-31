@@ -8,7 +8,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include<time.h>
+#include<math.h>
 
 int **gridNew(void);
 void gridFill(int **grid);
@@ -17,7 +18,10 @@ int gridGet(int **grid, int row, int col);
 bool gridCopy(int **grid); 
 void gridDelete(int **grid);
 bool checkValue(int **grid, int i, int j, int value); 
-void randFill(int **grid, int i, int j, int count); 
+bool randFill(int **grid, int i, int j, int count); 
+int fiftyFifty();
+int randNine();
+
 
 /**************** gridNew *******************/
 int **gridNew(void){
@@ -48,33 +52,48 @@ bool gridCopy(int **grid) {
 
 
 void gridFill(int **grid) {
-    int count = 0; 
-    for (int i = 0; i < 9; i++ ) {
-        for (int j = 0; j < 9; j++ ) {
-            randFill(grid, i, j, count); 
-        } 
-    }
+    	int count = 0; 
+    	for (int i = 0; i < 9; i++ ) {
+            for (int j = 0; j < 9; j++ ) {
+                randFill(grid, i, j, count);
+            } 
+        }
 }
 
-void randFill(int **grid, int i, int j, int count) {
-    if ((rand() % 2) == 0 || count >= 40) {
-        gridSet(grid, i, j, 0); 
-    }
-    else {
-        int value = rand() % 10;
-        if (value != 0) {
-            bool success = false; 
-            while (success != true) {
-                if (checkValue(grid, i, j, value)) {
-                    gridSet(grid, i, j, value); 
-                    success = true; 
-                    count++; 
-                }
-                else value = rand() %10;
+void gridEmpty(int **grid) {
+for (int i = 0; i < 9; i++ ) {
+            for (int j = 0; j < 9; j++ ) {
+                gridSet(grid, i, j, 0);
             }
         }
-    }
 }
+
+bool randFill(int **grid, int i, int j, int count) {
+    if (fiftyFifty() == 0 || count >= 40) {
+	gridSet(grid, i, j, 0);
+	return true;
+    }
+    else {
+	int v = 0;
+	bool exit = false;
+	while (v < 10 && !exit) {
+        	int value = randNine();
+        	if (value != 0) {    
+                	if (checkValue(grid, i, j, value)) {
+                    		gridSet(grid, i, j, value);  
+                    		count++;
+		    		return true;
+                	}
+                	else {
+		        	v++;
+		    	}
+		}
+	}
+	return false;
+    }
+	
+}
+
 
 bool checkValue(int **grid, int i, int j, int value){
     //check row
@@ -151,4 +170,16 @@ void gridDelete(int **grid){
         free(grid[i]);
     }
     free(grid);
+}
+
+/**************** fiftyFifty ***************/
+int fiftyFifty() {
+	int value = (rand() % 2);
+	return value;
+}
+
+/**************** randNine ***************/
+int randNine() {
+	int value = (rand() % 9) + 1;
+	return value;
 }
