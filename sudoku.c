@@ -25,19 +25,23 @@ int main(int argc, char *argv[]){
     }
     if(strcmp(argv[1],"create")==0){
     	srand(time(NULL));
-	int **grid = gridNew();
+	int **grid1 = gridNew();
 	bool success = false;
 	while (success != true) {
-		create(grid);
-		if (solve(grid, false) == 1) {
+		create(grid1);
+		int **grid2 = gridNew();
+		gridTransfer(grid2, grid1);
+		if (solve(grid1, false) == 1) {
 			success = true;
 		}
 		else {
-			gridEmpty(grid);
+			gridDelete(grid2);
+			gridEmpty(grid1);
 		}
 	}
-	gridPrint(grid);
-	gridDelete(grid);
+	gridPrint(grid2);
+	gridDelete(grid2);
+	gridDelete(grid1);
     }
     else if(strcmp(argv[1],"solve")==0){
         int **grid = gridNew();

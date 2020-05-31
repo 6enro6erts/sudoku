@@ -16,6 +16,7 @@ void gridFill(int **grid);
 void gridSet(int **grid, int row, int col, int value);
 int gridGet(int **grid, int row, int col);
 bool gridCopy(int **grid); 
+void gridTransfer(int **grid1, int **grid2);
 void gridDelete(int **grid);
 bool checkValue(int **grid, int i, int j, int value); 
 bool randFill(int **grid, int i, int j, int count); 
@@ -68,6 +69,13 @@ for (int i = 0; i < 9; i++ ) {
         }
 }
 
+void gridTransfer(int **grid1, int **grid2) {
+	for(int i = 0; i<9; i++) {
+        	for(int j = 0;j<9;j++){
+            		gridSet(grid1, i, j, gridGet(grid2, i, j));
+        	}
+    	}
+}
 bool randFill(int **grid, int i, int j, int count) {
     if (fiftyFifty() == 0 || count >= 40) {
 	gridSet(grid, i, j, 0);

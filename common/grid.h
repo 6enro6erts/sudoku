@@ -50,6 +50,8 @@ void gridFill(int **grid);
 
 bool randFill(int **grid, int i, int j, int count);
 
+void gridTransfer(int **grid1, int **grid2);
+
 int fiftyFifty();
 
 int randNine();
