@@ -6,7 +6,7 @@
 # Updated by Temi Prioleau, January 2020
 # updated C-median Dartmouth CS50
 # object files, and the target library
-OBJS = bag.o grid.o node.o shared.o
+OBJS = bag.o hashtable.o grid.o node.o shared.o
 LIB = common.a
 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS)
@@ -19,6 +19,7 @@ $(LIB): $(OBJS)
 
 # Dependencies: object files depend on header files
 bag.o: bag.h
+hashtable.o: hashtable.h
 grid.o: grid.h 
 node.o: node.h
 shared.o: shared.h node.h grid.h
