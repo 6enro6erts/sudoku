@@ -6,11 +6,14 @@
 
 # PROG = 
 OBJS = create.o 
+OBJS1 = createTest.o
 LIB = create.a
 L = ../common
 LL = ../solver
 LIBS= $(L)/common.a
 LLIBS = $(LL)/solve.a
+PROG = createTest
+UNITTEST=-DMYTEST
 
 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb -I $(LL) -I$(L)
@@ -22,8 +25,14 @@ $(LIB): $(OBJS)
 
 create.o: ../solver/solve.h ../common/node.h ../common/grid.h  ../common/node.h  
 
+$(PROG): create.c
+	$(CC) $(CFLAGS) $(UNITTEST) $^ $(LIBS) $(LLIBS) -o $@
 
-.PHONY: clean
+.PHONY: clean test
+
+test: $(PROG)
+
+all: $(LIB) $(PROG)
 
 clean:
 	rm -f *~ *.o *.dSYM
