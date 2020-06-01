@@ -46,8 +46,11 @@ int main(int argc, char *argv[]){
 //	gridDelete(grid3);
 //	gridDelete(grid1);
 	int **grid = gridNew();
-	create(grid);
-    gridPrint(grid);
+    for(int i = 0;i<100;i++){
+        create(grid);
+        gridPrint(grid);
+        printf("\ngrid #%d\n",i);
+    }
     gridDelete(grid);
     }
     else if(strcmp(argv[1],"solve")==0){
