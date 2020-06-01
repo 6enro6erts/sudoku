@@ -62,3 +62,6 @@ bool gridCheck(int **grid);
 
 /************* getRandomNode ***********/
 node_t *getRandomNode(int **grid);
+
+/************* gridMatch **************/
+bool gridMatch(int **grid1, int**grid2);

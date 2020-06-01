@@ -40,17 +40,15 @@ solve ouputs an array of integers that represents the solved sudoku
 
 ### create
 
-1. start with an empty grid
+1. call solve on an empty grid, producing a grid that is correctly filled in 
 
-    1. add a number at random until unique
+    1. pull number at random from grid
 
-        1. check if its solvable
+        1. check if grid has unique solution
 
-            1. if unsolvable, pop out most recent and try again
+            1. if not, pop out most recent and try again
 
-        1. check if its unique
-
-            1. if unique end
+            2. repeat until at least 40 numbers have been pulled from the grid  
 
 ### solve
 

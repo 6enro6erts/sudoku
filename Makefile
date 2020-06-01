@@ -15,6 +15,7 @@ LIBS2 = $(LLL)/solve.a
 CFLAGS = -Wall -pedantic -std=c11 -ggdb $(TESTING) -I $(L) -I $(LL) -I $(LLL)
 CC = gcc
 MAKE = make
+NUM_TESTS = 10
 
 $(PROG): $(OBJS) $(LIBS2) $(LIBS1) $(LIBS)
 	$(CC) $(CFLAGS) $^ -o $@
@@ -37,6 +38,8 @@ test: $(PROG)
 testcreate: $(PROG)
 	./$(PROG) create
 
+fuzztest: 
+	./testing.sh $(NUM_TESTS) &> testing.out
 
 clean:
 	rm -rf *.o

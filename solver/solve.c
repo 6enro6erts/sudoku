@@ -26,6 +26,9 @@ int solve(int **grid, bool print){
 	fprintf(stdout, "Scanned for all gimmes (meaning nodes where there is only one possible value)\n");
 #endif
     if(gridCheck(grid)){
+        if(print){
+            gridPrint(grid);
+        }
         return 1;
         //only one solution if passed a true grid or all gimmes
     }

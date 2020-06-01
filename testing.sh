@@ -4,9 +4,9 @@
 #
 # Description: fuzztesting for ./sudoku create, ./sudoku solve  
 # 	      
-#
 # Input: User provides commandline argument denoting the number of tests to run
-# Output: For each test, outputs create grid before and after solve
+# Output: For each test, outputs create grid before and after solve, along with the  
+# 	  number of possible solutions for the template grid
 #
 # C-Median, CS50, May 31, 2020
 
@@ -31,5 +31,7 @@ while [ $TEST_NUM -lt $1 ]; do
 	((TEST_NUM = TEST_NUM + 1))
 	sleep 1
 done
+
+rm -f file
 
 exit 0
