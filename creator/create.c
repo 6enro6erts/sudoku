@@ -49,6 +49,7 @@ void create(int** grid){
 }
 
 #ifdef MYTEST
+#include <time.h>
 int main(int argc, char *argv[]){
         // print the command line so the user can view what was called on the solver
         for (int n = 0; n < argc; n++){
@@ -56,33 +57,37 @@ int main(int argc, char *argv[]){
         }
         fprintf(stdout, "\n");
 
-        if (argc != 2 || strcmp(argv[1], "create")){
-                fprintf(stderr,"Incorrect number of arguments\nUsage: ./sudoku command. \nSee readme for more\n");
+	// log error and return 1 if there was an incorrect number of args
+        if (argc != 1){
+                fprintf(stderr,"Incorrect number of arguments\nUsage: ./createTest. \nSee readme for more\n");
                 return 1;
         }
 
-        /*// initialize grid and record an error if gridNew returns null
-        int **grid = gridNew();
-        if (grid == NULL)
-                fprintf(stderr, "gridNew returned a null value.\n");
+	// seed the random number generator
+	fprintf(stdout, "seeding the random number generator\n");
+	srand(time(NULL));
 
-        // call gridcopy, and print the resulting grid
-        gridCopy(grid);
-        fprintf(stdout, "gridCopy was called, printing the grid that was entered as input:\n");
-        gridPrint(grid);
+	// create an empty grid
+	int **grid = gridNew();
+	if (grid==NULL)
+		fprintf(stderr, "gridNew returned a null grid!\n");
 
-        // test the gridSolver
-        printf("calling solve(grid, true)\n");
-        int numSol = solve(grid, true);
-        printf("number of solutions is: %d\n",numSol);
+	// create the grid
+	fprintf(stdout, "calling create(grid)\n");
+	create(grid);
 
-        // test gridDelete
-        gridDelete(grid);
-        fprintf(stdout, "gridDelete was called\n");
+	// print the grid created
+	fprintf(stdout, "Printing the resulting grid:\n");
+	gridPrint(grid);
+
+	// delete grid
+	fprintf(stdout, "Deleting the grid...\n");
+	gridDelete(grid);
+
 
         fprintf(stdout, "End of this unit test\n\n");
         fprintf(stdout, "---------------------------------------------\n");
-        */return 0;
+        return 0;
 }
 
 #endif
