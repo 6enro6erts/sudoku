@@ -128,8 +128,8 @@ int main(int argc, char *argv[]){
 	}
 	fprintf(stdout, "\n");
 
-	if (argc != 2 || strcmp(argv[1], "solve")){
-		fprintf(stderr,"Incorrect number of arguments\nUsage: ./sudoku command. \nSee readme for more\n");
+	if (argc != 1){
+		fprintf(stderr,"Incorrect number of arguments\nUsage: ./solveTest. \nSee readme for more\n");
         	return 1;
 	}
 

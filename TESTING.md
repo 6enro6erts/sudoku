@@ -9,7 +9,7 @@ To test the solver, we wrote a fuzz testing module in solve/, performed unit tes
 ### Unit Testing ###
 (enter the solver directory)
 make test  
-./solveTest  solve
+./solveTest
 
 The unit tests we performed are located in testing.sh
 
