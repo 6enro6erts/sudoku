@@ -14,6 +14,10 @@ The sudoku board is stored as a two-dimensional array of integers.
 
 ### Create
 
+First, solve is called on an empty grid, producing a random solution.  
+  
+Next, a DFS algorithm is utilized 
+
 ### Solve
 
 Solve is executed as a two-step process, first prefilling any gimmes, then running a DFS for the remaining options 
