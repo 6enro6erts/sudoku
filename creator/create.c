@@ -18,6 +18,10 @@
 void create(int** grid){
 	gridEmpty(grid);
 	solve(grid,false);
+#ifdef MYTEST
+	fprintf(stdout, "Printing the solved grid that we will remove values from to make our puzzle.\n");
+	gridPrint(grid);
+#endif
     bag_t *stack = bag_new(); //create a bag to stack possibilities 
     //bag_t *backtrace = bag_new(); //create a bag for backtracing 
     int zcount = 0;
