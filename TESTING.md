@@ -16,7 +16,6 @@ The unit testing we performed is outlined in testing.sh
 
 To test the creater, we performed unit testing, and wrote a testing.sh script.
 =======
-To test the creater, I wrote a program called testCreater.sh  
   
 ### Fuzztesting ###  
 Fuzztesting is performed via the `testing.sh` bash script.
