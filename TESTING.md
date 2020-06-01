@@ -6,7 +6,7 @@
 
 To test the solver, we wrote a fuzz testing module in solve/, performed unit testing, and wrote a script, testing.sh, that contains our testing.
 
-### Unit Testing of Solve ###
+### Unit Testing ###
 (enter the solver directory)
 make test  
 ./solveTest  solve
@@ -40,4 +40,6 @@ For each test, the output format includes:
 Comments:  
 `testing.sh` does not explicitly test the grids for their adherence to sudoku rules, as  
 the solve function checks this internally.
->>>>>>> 71f2637f5888a366cf8e9102f7f73a4a72035000
+
+### Unit testing ###
+
