@@ -3,8 +3,14 @@
 
 ### Testing 'solve'
 
-To test the solver, I wrote a program testSolver.sh
+To test the solver, we wrote a fuzz testing module in solve/, performed unit testing, and wrote a script, testing.sh, that contains our testing.
 
-### Testing 'create'
+## Unit Testing of 'solve'
+make test
+./solveTest  solve
 
-To test the creater, I wrote a program called testCreater.sh
+The unit testing we performed is outlined in testing.sh
+
+### Testing 'create' 
+
+To test the creater, we performed unit testing, and wrote a testing.sh script.

@@ -6,10 +6,12 @@
 
 # PROG = 
 OBJS = solve.o
+OBJS1 = solveTest.o
 LIB = solve.a
 L = ../common
 LIBS= $(L)/common.a
-
+PROG=solveTest
+UNITTEST=-DMYTEST
 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb -I$(L)
 MAKE = make
@@ -18,10 +20,17 @@ CC = gcc
 $(LIB): $(OBJS)
 	ar cr $(LIB) $(OBJS)
 
-solver.o: solve.h ../common/shared.h ../common/grid.h  ../common/node.h 
+solve.o: solve.h ../common/shared.h ../common/grid.h  ../common/node.h 
+
+$(PROG): solve.c
+	$(CC) $(CFLAGS) $(UNITTEST) $^ $(LIBS) -o $@
 
 
-.PHONY: clean
+.PHONY: clean test
+
+test: $(PROG)
+
+all: $(LIB) $(PROG)
 
 clean:
 	rm -f *~ *.o *.dSYM

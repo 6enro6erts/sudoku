@@ -15,6 +15,7 @@
 #include "shared.h"
 #include "bag.h"
 
+
 /******************* solve *****************/
 /*takes a grid and a value that says whether or not to print
 * return number of solutions 
@@ -42,6 +43,8 @@ int solve(int **grid, bool print){
     pushGuesses(currentNode,grid,stack); //stack all possible solutions for first node
 #ifdef MYTEST
     fprintf(stdout, "Pushed all of the guesses to the bag, and the current bag of guesses is: \n");
+    nodePrint(stdout, stack);
+    fprintf(stdout, "\n");
 #endif
     nodeDelete(currentNode); //delete the first node 
     currentNode = bag_extract(stack); //pull the first item from the stack
@@ -80,7 +83,7 @@ int solve(int **grid, bool print){
                 if(solcount==1){
                     if(print){ //if print is enabled
 #ifdef MYTEST
-	fprintf(stdout, "Calling gridPrint with the current grid\n");
+	fprintf(stdout, "Printing the resulting grid:\n");
 #endif
                         gridPrint(grid); //print the grid 
                         printf("\n");
@@ -113,3 +116,42 @@ int solve(int **grid, bool print){
    
     return(solcount);
 }
+
+#ifdef MYTEST
+int main(int argc, char *argv[]){
+	// print the command line so the user can view what was called on the solver
+	for (int n = 0; n < argc; n++){
+        	fprintf(stdout, " %s ", argv[n]);
+	}
+	fprintf(stdout, "\n");
+
+	if (argc != 2 || strcmp(argv[1], "solve")){
+		fprintf(stderr,"Incorrect number of arguments\nUsage: ./sudoku command. \nSee readme for more\n");
+        	return 1;
+	}
+
+	// initialize grid and record an error if gridNew returns null
+	int **grid = gridNew();
+	if (grid == NULL)
+		fprintf(stderr, "gridNew returned a null value.\n");
+
+	// call gridcopy, and print the resulting grid
+	gridCopy(grid);
+	fprintf(stdout, "gridCopy was called, printing the grid that was entered as input:\n");
+	gridPrint(grid);
+
+	// test the gridSolver
+	printf("calling solve(grid, true)\n");
+	int numSol = solve(grid, true);
+	printf("number of solutions is: %d\n",numSol);
+
+	// test gridDelete
+	gridDelete(grid);
+	fprintf(stdout, "gridDelete was called\n");
+
+
+
+	return 0;	
+}
+
+#endif
