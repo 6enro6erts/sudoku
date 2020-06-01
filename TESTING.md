@@ -2,15 +2,15 @@
 ## C-mdeian, CS50 Spring 2020
 
 ### Testing 'solve'
+======
 
 To test the solver, we wrote a fuzz testing module in solve/, performed unit testing, and wrote a script, testing.sh, that contains our testing.
 
-## Unit Testing of 'solve'
+### Unit Testing of Solve ###
 make test  
-./solveTest  solve  
+./solveTest  solve
 
-<<<<<<< HEAD
-The unit testing we performed is outlined in testing.sh
+The unit tests we performed are located in testing.sh
 
 ### Testing 'create' 
 

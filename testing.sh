@@ -17,8 +17,9 @@ if [ "$#" != 1 ]; then
     exit 1
 fi
 
-
+# Fuzz testing
 # For each argument, find it in array and print "field-number:field-name"
+echo Beginning fuzz testing
 TEST_NUM=0
 while [ $TEST_NUM -lt $1 ]; do  
 	./sudoku create > file
@@ -33,5 +34,13 @@ while [ $TEST_NUM -lt $1 ]; do
 done
 
 rm -f file
+
+#unit testing of solve
+echo End of fuzz testing
+echo Beginning unit testing of solve
+./solver/solveTest solve < testgrids/test1
+./solver/solveTest solve < testgrids/test2
+./solver/solveTest solve < testgrids/test3
+echo End of unit testing of solve
 
 exit 0
