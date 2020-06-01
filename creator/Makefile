@@ -8,7 +8,7 @@
 OBJS = create.o 
 LIB = create.a
 L = ../common
-LL = ../solve
+LL = ../solver
 LIBS= $(L)/common.a
 LLIBS = $(LL)/solve.a
 

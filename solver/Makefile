@@ -18,7 +18,7 @@ CC = gcc
 $(LIB): $(OBJS)
 	ar cr $(LIB) $(OBJS)
 
-solver.o: solve.h ../common/node.h ../common/grid.h  ../common/node.h 
+solver.o: solve.h ../common/shared.h ../common/grid.h  ../common/node.h 
 
 
 .PHONY: clean

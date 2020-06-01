@@ -88,8 +88,7 @@ bool randFill(int **grid, int i, int j, int count) {
         	int value = randNine();
         	if (value != 0) {    
                 	if (checkValue(grid, i, j, value)) {
-                    		printf("%d\n", value);
-				gridSet(grid, i, j, value);  
+				            gridSet(grid, i, j, value);  
                     		count++;
 		    		return true;
                 	}

@@ -46,10 +46,9 @@ int main(int argc, char *argv[]){
 //	gridDelete(grid3);
 //	gridDelete(grid1);
 	int **grid = gridNew();
-	gridEmpty(grid);
-	gridPrint(grid);
-	solve(grid, false);
-	gridPrint(grid);
+	create(grid);
+    gridPrint(grid);
+    gridDelete(grid);
     }
     else if(strcmp(argv[1],"solve")==0){
         int **grid = gridNew();

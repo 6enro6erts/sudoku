@@ -11,7 +11,6 @@
 #include <stdbool.h>
 #include "grid.h"
 #include "node.h"
-#include "solve.h"
 #include "bag.h"
 
 
@@ -61,6 +60,5 @@ node_t *getNextNode(int **grid);
 /*checks to see if a given board is a solution*/
 bool gridCheck(int **grid);
 
-/************* create DFS **************/
-/*takes a randomly filled grid and pops until at least 40 zeros*/
-void createDFS(int **grid);
+/************* getRandomNode ***********/
+node_t *getRandomNode(int **grid);

@@ -71,7 +71,12 @@ int solve(int **grid, bool print){
                         printf("\n");
                     }
                 }
-                else return solcount;
+                else {
+                    nodeDelete(currentNode);
+                    bag_delete(stack,nodeDelete); //clear bags
+                    bag_delete(backtrace,nodeDelete);
+                    return solcount;
+                }
             }
             //same backtrace as above, here executed to jump back after checking a solution
             //necessary to find multiple solutions

@@ -12,7 +12,6 @@
 #include "grid.h"
 #include "node.h"
 #include "bag.h"
-#include "solve.h"
 
 /************** Declarations ***************/
 bag_t * randomValueBag();
@@ -132,7 +131,7 @@ bool pushGuesses(node_t *node, int **grid, bag_t *bag){
         for(int i = 1;i<=9;i++){
 	    int value;
 	    node_t *valuenode;
-            valuenode = bag_extract(valueBag);
+        valuenode = bag_extract(valueBag);
 	    value = nodeGetValue(valuenode);
 	    nodeDelete(valuenode);
 	    testnode = nodeNew(row,column,value);
@@ -156,6 +155,9 @@ bag_t * randomValueBag() {
 	int j = 0;
 	bag_t *returnBag = bag_new();
 	int trackerArray[9];
+    for(int i = 0;i<9;i++){
+        trackerArray[i]=0;
+    }
 	while (i < 9) {
 		int value = (rand() % 9) + 1;
 		if (!arrayCheck(value, trackerArray)) {
@@ -225,34 +227,4 @@ node_t *getRandomNode(int **grid){
             return nodeNew(i,j,grid[i][j]);
         }
     }
-}
-
-/************* create DFS **************/
-/*takes a randomly filled grid and pops until at least 40 zeros*/
-void createDFS(int **grid){
-    
-    bag_t *stack = bag_new(); //create a bag to stack possibilities 
-    // bag_t *backtrace = bag_new(); //create a bag for backtracing 
-    int zcount = 0;
-    node_t *currentNode; //create the current and next nodes
-    currentNode = getRandomNode(grid); //start at random node
-    grid[nodeGetRow(currentNode)][nodeGetColumn(currentNode)] = 0;
-    zcount++;
-    bag_insert(stack,currentNode);
-
-    while(zcount<40){ 
-        
-        currentNode = getRandomNode(grid);
-        grid[nodeGetRow(currentNode)][nodeGetColumn(currentNode)] = 0;
-        zcount++;
-        if(solve(grid,false)!=1){
-            grid[nodeGetRow(currentNode)][nodeGetColumn(currentNode)] = nodeGetValue(currentNode);
-            zcount--;
-        }
-        bag_insert(stack,currentNode);
-    }
-
-    bag_delete(stack,nodeDelete); //clear bags
-   
-    gridPrint(grid);
 }

@@ -6,12 +6,10 @@
 # Updated by Temi Prioleau, January 2020
 # updated C-median Dartmouth CS50
 # object files, and the target library
-OBJS = bag.o hashtable.o grid.o node.o shared.o jhash.o set.o ../solver/solve.o
-L = ../solver
+OBJS = bag.o hashtable.o grid.o node.o shared.o jhash.o set.o 
 LIB = common.a
-LIBS = $(L)/solver.a
 
-CFLAGS = -Wall -pedantic -std=c11 -ggdb -I$(L) $(FLAGS)
+CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS)
 CC = gcc
 MAKE = make
 
@@ -27,7 +25,6 @@ node.o: node.h
 shared.o: shared.h node.h grid.h
 jhash.o: jhash.h
 set.o: set.h
-solve.o: ../solver/solve.h
 
 .PHONY: clean sourcelist
 
