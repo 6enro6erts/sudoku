@@ -23,7 +23,7 @@ variable. The results are piped into `testing.out`.
   
 Output:  
 For each test, the output format includes:  
-	- the template grid produced by `./sudoku create`
+	- the template grid produced by `./sudoku create`    
 	- the solution grid filled in by `./sudoku solve`  
 	- the number of possible solutions to the template grid as determined  
 	  by the solve function.  
