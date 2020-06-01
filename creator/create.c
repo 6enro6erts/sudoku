@@ -13,4 +13,5 @@
 /***************** create **********************/
 void create(int** grid){
 	gridFill(grid); 
+	createDFS(grid);
 }

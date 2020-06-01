@@ -6,10 +6,12 @@
 # Updated by Temi Prioleau, January 2020
 # updated C-median Dartmouth CS50
 # object files, and the target library
-OBJS = bag.o hashtable.o grid.o node.o shared.o
+OBJS = bag.o hashtable.o grid.o node.o shared.o jhash.o set.o ../solver/solve.o
+L = ../solver
 LIB = common.a
+LIBS = $(L)/solver.a
 
-CFLAGS = -Wall -pedantic -std=c11 -ggdb $(FLAGS)
+CFLAGS = -Wall -pedantic -std=c11 -ggdb -I$(L) $(FLAGS)
 CC = gcc
 MAKE = make
 
@@ -19,10 +21,13 @@ $(LIB): $(OBJS)
 
 # Dependencies: object files depend on header files
 bag.o: bag.h
-hashtable.o: hashtable.h
+hashtable.o: hashtable.h jhash.h
 grid.o: grid.h 
 node.o: node.h
 shared.o: shared.h node.h grid.h
+jhash.o: jhash.h
+set.o: set.h
+solve.o: ../solver/solve.h
 
 .PHONY: clean sourcelist
 

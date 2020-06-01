@@ -11,7 +11,6 @@
 #include<string.h>
 #include"hashtable.h"
 #include"jhash.h"
-#include"memory.h"
 #include"set.h"
 
 // file-local global variables
@@ -35,11 +34,11 @@ typedef struct hashtable {
 // definitions
 // hashtable_new - creates new hashtable
 hashtable_t *hashtable_new(const int num_slots) {
-	set_t **array = count_calloc(num_slots, sizeof(set_t*));
+	set_t **array = calloc(num_slots, sizeof(set_t*));
 	if (array == NULL) {
 		return NULL;
 	}
-	hashtable_t *new = count_malloc(sizeof(hashtable_t));
+	hashtable_t *new = malloc(sizeof(hashtable_t));
 	if (new == NULL) {
 		return NULL;
 	}
@@ -56,7 +55,7 @@ hashtable_t *hashtable_new(const int num_slots) {
 // hashtable_insert - inserts key, item pair into hashtable
 bool hashtable_insert(hashtable_t *ht, const char *key, void *item) {
 	// copy key, set_new will do this also, so maybe unnecessary
-	char * key_cp = (char *) count_calloc(strlen(key)+1, sizeof(char));            
+	char * key_cp = (char *) calloc(strlen(key)+1, sizeof(char));            
         if (key_cp == NULL) {
                 return false;                                                           
         }

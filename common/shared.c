@@ -12,6 +12,7 @@
 #include "grid.h"
 #include "node.h"
 #include "bag.h"
+#include "solve.h"
 
 /************** Declarations ***************/
 bag_t * randomValueBag();
@@ -114,6 +115,7 @@ void gimmeScanner(int **grid){
             }
         }
     }
+
 }
 
 /****************** pushGuesses **************/
@@ -198,13 +200,59 @@ bool gridCheck(int **grid){
     node_t *node;
     for(int i=0;i<9;i++){
         for(int j=0;j<9;j++){
-            node = nodeNew(i,j,grid[i][j]);
-            if(!checkNode(node,grid)){
-                nodeDelete(node);
+            if(grid[i][j]==0){ //check that the grid is full
                 return false;
+            } else{
+                node = nodeNew(i,j,grid[i][j]); //check that each node follows rules
+                if(!checkNode(node,grid)){
+                    nodeDelete(node);
+                    return false;
+                }
+                nodeDelete(node);
             }
-            nodeDelete(node);
         }
     }
     return true;
+}
+
+/************* getRandomNode ***********/
+node_t *getRandomNode(int **grid){
+    int i,j;
+    while(true){ 
+        i = rand()%9;
+        j = rand()%9;
+        if(grid[i][j]!=0){
+            return nodeNew(i,j,grid[i][j]);
+        }
+    }
+}
+
+/************* create DFS **************/
+/*takes a randomly filled grid and pops until at least 40 zeros*/
+void createDFS(int **grid){
+    
+    bag_t *stack = bag_new(); //create a bag to stack possibilities 
+    // bag_t *backtrace = bag_new(); //create a bag for backtracing 
+    int zcount = 0;
+    node_t *currentNode; //create the current and next nodes
+    currentNode = getRandomNode(grid); //start at random node
+    grid[nodeGetRow(currentNode)][nodeGetColumn(currentNode)] = 0;
+    zcount++;
+    bag_insert(stack,currentNode);
+
+    while(zcount<40){ 
+        
+        currentNode = getRandomNode(grid);
+        grid[nodeGetRow(currentNode)][nodeGetColumn(currentNode)] = 0;
+        zcount++;
+        if(solve(grid,false)!=1){
+            grid[nodeGetRow(currentNode)][nodeGetColumn(currentNode)] = nodeGetValue(currentNode);
+            zcount--;
+        }
+        bag_insert(stack,currentNode);
+    }
+
+    bag_delete(stack,nodeDelete); //clear bags
+   
+    gridPrint(grid);
 }

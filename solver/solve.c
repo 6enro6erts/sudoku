@@ -14,7 +14,6 @@
 #include "node.h"
 #include "shared.h"
 #include "bag.h"
-#include <unistd.h>
 
 /******************* solve *****************/
 /*takes a grid and a value that says whether or not to print
@@ -22,6 +21,11 @@
 */
 int solve(int **grid, bool print){
     gimmeScanner(grid); //fill in all gimmes (only one possible value)
+
+    if(gridCheck(grid)){
+        return 1;
+        //only one solution if passed a true grid or all gimmes
+    }
     
     int solcount = 0; //track number of solutions 
     bag_t *stack = bag_new(); //create a bag to stack possibilities 
