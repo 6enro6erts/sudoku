@@ -46,7 +46,9 @@ echo End of unit testing for solve
 #unit testing for create
 echo Beginning unit testing for create
 ./creator/createTest
+sleep 1
 ./creator/createTest
+sleep 1
 ./creator/createTest
 echo End of unit testing for create
 
