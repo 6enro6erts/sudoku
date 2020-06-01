@@ -21,7 +21,9 @@
 */
 int solve(int **grid, bool print){
     gimmeScanner(grid); //fill in all gimmes (only one possible value)
-
+#ifdef MYTEST
+	fprintf(stdout, "Scanned for all gimmes (meaning nodes where there is only one possible value)\n");
+#endif
     if(gridCheck(grid)){
         if(print){
             gridPrint(grid);
@@ -36,12 +38,22 @@ int solve(int **grid, bool print){
 
     node_t *currentNode,*nextNode,*btNode; //create the current and next nodes
     currentNode = getNextNode(grid); //start at the first node of the grid
+#ifdef MYTEST
+    if (currentNode==NULL)
+    	fprintf(stderr, "getNextNode(grid) returned null\n");
+#endif
     pushGuesses(currentNode,grid,stack); //stack all possible solutions for first node
+#ifdef MYTEST
+    fprintf(stdout, "Pushed all of the guesses to the bag, and the current bag of guesses is: \n");
+#endif
     nodeDelete(currentNode); //delete the first node 
     currentNode = bag_extract(stack); //pull the first item from the stack
     //insert a copy of the item into the backtrace so we have a "root" for the backtrace stack
     if(currentNode!=NULL) bag_insert(backtrace,nodeNew(nodeGetRow(currentNode),nodeGetColumn(currentNode),0));
-
+#ifdef MYTEST
+    else
+	fprintf(stderr, "The first node to visit is null!\n");
+#endif
     while(currentNode!=NULL){ //while there are untried possibilites
         grid[nodeGetRow(currentNode)][nodeGetColumn(currentNode)] = nodeGetValue(currentNode); //set the grid to that possiblity
         nextNode = getNextNode(grid); //get next unsolved node in the grid
@@ -69,7 +81,10 @@ int solve(int **grid, bool print){
             if(gridCheck(grid)){  //check if it solves
                 solcount++; //add to count of solutions 
                 if(solcount==1){
-                    if(print){ //if print is enabled 
+                    if(print){ //if print is enabled
+#ifdef MYTEST
+	fprintf(stdout, "Calling gridPrint with the current grid\n");
+#endif
                         gridPrint(grid); //print the grid 
                         printf("\n");
                     }

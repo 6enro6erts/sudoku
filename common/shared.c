@@ -229,50 +229,5 @@ node_t *getRandomNode(int **grid){
         }
     }
 }
-// /*************** createNodes ***************/  
-// /* fills hash with two-digit key for each slot on grid  
-//  * along with an ordering int as that key's item; the purpose 
-//  * is to create a random ordering of grid slots*/
-// void fillHash(int **grid, hashtable_t *ht) {
-// 	int ctr = 0;
-// 	while (ctr < 81) {
-// 		int i = randNine();
-// 		int j = randNine();
-// 		char *rc = calloc(3, sizeof(char*));
-// 		char *temp1 = calloc(2, sizeof(char*));
-// 		char *temp2 = calloc(2, sizeof(char*));
-// 		sscanf(temp1, "%s", i);
-// 		strcpy(rc, temp1);
-// 		sscanf(temp2, "%s", j);
-// 		strcat(rc, temp2);
-// 		free(temp1);
-// 		free(temp2);
-// 		if (hashtable_find(ht, rc) == NULL) {
-// 			hashtable_insert(ht, rc, ctr);
-// 			ctr++;
-// 			free(rc);
-// 		}
-// 		else {
-// 			free(rc);
-// 		}
-// }
-
-// /******************** nodeToString ****************/ 
-// /* given node as parameter, returns string representation of 
-//  * coordinates */
-// char * nodeToString(node_t *node) {
-// 	char *rc = calloc(3, sizeof(char*));
-//         char *temp1 = calloc(2, sizeof(char*));
-//        	char *temp2 = calloc(2, sizeof(char*));
-//         sscanf(temp1, "%s", nodeGetRow(node));
-//         strcpy(rc, temp1);
-//         sscanf(temp2, "%s", nodeGetColumn(node));
-//         strcat(rc, temp2);
-// 	char *returnString = rc;
-// 	free(temp1);
-// 	free(temp2);
-// 	free(rc);
-// 	return returnString;
-// }
 
 
