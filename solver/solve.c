@@ -152,8 +152,8 @@ int main(int argc, char *argv[]){
 	gridDelete(grid);
 	fprintf(stdout, "gridDelete was called\n");
 
-
-
+	fprintf(stdout, "End of this unit test\n\n");
+	fprintf(stdout, "---------------------------------------------\n");
 	return 0;	
 }
 
