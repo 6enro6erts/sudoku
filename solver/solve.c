@@ -23,6 +23,9 @@ int solve(int **grid, bool print){
     gimmeScanner(grid); //fill in all gimmes (only one possible value)
 
     if(gridCheck(grid)){
+        if(print){
+            gridPrint(grid);
+        }
         return 1;
         //only one solution if passed a true grid or all gimmes
     }
