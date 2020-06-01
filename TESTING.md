@@ -6,8 +6,8 @@
 To test the solver, we wrote a fuzz testing module in solve/, performed unit testing, and wrote a script, testing.sh, that contains our testing.
 
 ## Unit Testing of 'solve'
-make test
-./solveTest  solve
+make test  
+./solveTest  solve  
 
 <<<<<<< HEAD
 The unit testing we performed is outlined in testing.sh
