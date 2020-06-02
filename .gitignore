@@ -1,0 +1,13 @@
+# Object Files #
+*.o
+
+# Executables #  
+sudoku  
+  
+# Archives #  
+*.a  
+
+# Testing #  
+testing.out
+testgrids
+  
