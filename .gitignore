@@ -6,8 +6,4 @@ sudoku
   
 # Archives #  
 *.a  
-
-# Testing #  
-testing.out
-testgrids
   
