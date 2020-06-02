@@ -39,7 +39,7 @@ For each test, the output format includes:
   
 Comments:  
 `testing.sh` does not explicitly test the grids for their adherence to sudoku rules, as  
-the solve function checks this internally.
+the solve function checks this internally via a call to `gridCheck()`.
 
 ### Unit testing ###
 

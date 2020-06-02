@@ -40,9 +40,9 @@ solve ouputs an array of integers that represents the solved sudoku
 
 ### create
 
-1. call solve on an empty grid, producing a grid that is correctly filled in 
+1. call solve on an empty grid, producing a random grid that is correctly filled in 
 
-    1. pull number at random from grid
+2. pull number at random from grid
 
         1. check if grid has unique solution
 
