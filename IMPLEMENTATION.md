@@ -16,7 +16,21 @@ The sudoku board is stored as a two-dimensional array of integers.
 
 First, solve is called on an empty grid, producing a random solution.  
   
-Next, a DFS algorithm is utilized 
+Next, a DFS algorithm is utilized. Similar to the solve DFS described below, the create DFS relies upon a `bag` datatype to implement a LIFO stack and a `node_t` data type to represent the row, column, and value for each slot in the grid.  
+  
+	1. A random node is initialized with a call to `getRandomNode()`
+
+	2. The value of the grid slot corresponding to this node is set to zero
+
+	3. The board zero-counter is incremented  
+
+	4. `solve()` is called on the grid
+		
+		1. If `solve()` returns a value of 1 (indicating a unique solution), then the node is added to the "stack" bag
+
+		2. Else, the value of the grid slot corresponding to the node is set back to its original value, the zero counter is decremented, the node is added to the "stack" ba			g  
+
+	5. Back to 1
 
 ### Solve
 

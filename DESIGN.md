@@ -42,13 +42,16 @@ solve ouputs an array of integers that represents the solved sudoku
 
 1. call solve on an empty grid, producing a random grid that is correctly filled in 
 
-2. pull number at random from grid
+2. pull node at random from grid, set value to zero, increment zero-counter, check number of grid solutions
 
-        1. check if grid has unique solution
+        1. if grid has a unique solution, add node to stack, pull next random node
 
-            1. if not, pop out most recent and try again
+        OR  
+ 	
+	2. if grid has more than one solution, set node value back to original value, decrement zero-counter, add node to  
+	   stack, pull next random node
 
-            2. repeat until at least 40 numbers have been pulled from the grid  
+3. continue pulling nodes, setting to zero, checking for unique solution until the zero-counter reaches arbitrarily set value  
 
 ### solve
 
