@@ -42,4 +42,11 @@ Comments:
 the solve function checks this internally via a call to `gridCheck()`.
 
 ### Unit testing ###
+(enter the creator directory)
+make test
+./createTest
 
+The unit tests we performed for testing are located in the testing.sh file  
+
+Comments:  
+when calling ./createTest multiple times, you must pause for 1 second in between each iteration in order to have a different grid template. Otherwise the creator will have the same seeding.

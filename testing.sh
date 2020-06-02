@@ -34,13 +34,22 @@ while [ $TEST_NUM -lt $1 ]; do
 done
 
 rm -f file
-
-#unit testing of solve
 echo End of fuzz testing
-echo Beginning unit testing of solve
+
+#unit testing for solve
+echo Beginning unit testing for solve
 ./solver/solveTest < testgrids/test1
 ./solver/solveTest < testgrids/test2
 ./solver/solveTest < testgrids/test3
-echo End of unit testing of solve
+echo End of unit testing for solve
+
+#unit testing for create
+echo Beginning unit testing for create
+./creator/createTest
+sleep 1
+./creator/createTest
+sleep 1
+./creator/createTest
+echo End of unit testing for create
 
 exit 0
