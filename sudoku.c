@@ -1,6 +1,13 @@
 /* sudoku.c
 *
-* runs the sudoku functions from a main driver
+* usage: runs the sudoku functions from a main driver
+*
+* input: if run with `create` as argument, sudoku builds a sudoku puzzle template in accordance with the specified requirements (i.e, with at least 40 zeros and a unique solution)  
+* 	 if run with `solve` as argument, sudoku solves a sudoku puzzle grid passed as stdin  
+*
+* output: sudoku prints a grid to the screen; if run with `solve` as argument, also prints the number of solutions to the input puzzle to the screen
+*
+* stderr: error if incorrect number of input arguments received, or if the input argument is invalid
 *
 * C-Median: CS50 Spring 2020 final project
 */
