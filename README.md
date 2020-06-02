@@ -1,4 +1,5 @@
 # README for sudoku
+C-Median, CS50, June 3, 2020
 
 ### Usage ###     
  
