@@ -12,19 +12,16 @@
 #include<math.h>
 
 int **gridNew(void);
-void gridFill(int **grid);
 void gridSet(int **grid, int row, int col, int value);
 int gridGet(int **grid, int row, int col);
 bool gridCopy(int **grid); 
 void gridTransfer(int **grid1, int **grid2);
 void gridDelete(int **grid);
-bool checkValue(int **grid, int i, int j, int value); 
-bool randFill(int **grid, int i, int j, int count); 
-int fiftyFifty();
-int randNine();
+
 
 
 /**************** gridNew *******************/
+/* allocates memory for a new grid */
 int **gridNew(void){
     int **grid = malloc(sizeof(int *)*9);
     
@@ -39,6 +36,8 @@ int **gridNew(void){
     }
 }
 
+/*************** gridCopy ***************/
+/* Fills a grid with information to match grid from stdin */
 bool gridCopy(int **grid) {
     for(int i = 0; i<9; i++) {                     
         for(int j = 0;j<9;j++){
@@ -52,15 +51,8 @@ bool gridCopy(int **grid) {
 }   
 
 
-void gridFill(int **grid) {
-    	int count = 0; 
-    	for (int i = 0; i < 9; i++ ) {
-            for (int j = 0; j < 9; j++ ) {
-                randFill(grid, i, j, count);
-            } 
-        }
-}
-
+/************* gridEmpty **************/  
+/* fills grid with zeros */
 void gridEmpty(int **grid) {
 for (int i = 0; i < 9; i++ ) {
             for (int j = 0; j < 9; j++ ) {
@@ -69,6 +61,8 @@ for (int i = 0; i < 9; i++ ) {
         }
 }
 
+/************** gridTransfer ***************/
+/* updates grid one to match grid2 */
 void gridTransfer(int **grid1, int **grid2) {
 	for(int i = 0; i<9; i++) {
         	for(int j = 0;j<9;j++){
@@ -76,87 +70,16 @@ void gridTransfer(int **grid1, int **grid2) {
         	}
     	}
 }
-bool randFill(int **grid, int i, int j, int count) {
-    //if (fiftyFifty() == 0 || count >= 40) {
-//	gridSet(grid, i, j, 0);
-//	return true;
-  //  }
-    //else {
-	int v = 0;
-	bool exit = false;
-	while (v < 10 && !exit) {
-        	int value = randNine();
-        	if (value != 0) {    
-                	if (checkValue(grid, i, j, value)) {
-				            gridSet(grid, i, j, value);  
-                    		count++;
-		    		return true;
-                	}
-                	else {
-		        	v++;
-		    	}
-		}
-	}
-	return false;
-   // }
-	
-}
-
-
-bool checkValue(int **grid, int i, int j, int value){
-    //check row
-    int row,column;
-    row = i;
-    for(column = 0; column < 9; column++){
-        //printf("here. %d \n", column); 
-        if( j !=column){
-            if(grid[row][column] == value){
-                //printf("returning false\n");
-                return false;
-            }
-        }
-    }
-
-    //check column
-    column = j;
-    for(row = 0; row<9;row++){
-        //printf("here now.\n");
-        if(i !=row){
-            if(grid[row][column] == value){
-                return false;
-            }
-        }
-    }
-
-    //check square
-    int topLeftRow, topLeftColumn;
-    int rowCount = 0;
-    int columnCount = 0;
-
-    topLeftRow = (i/3)*3; //integer divide to get 0,1 or 2 then multiply by 3 to get the correct row index
-    topLeftColumn = (j/3)*3; //same as row
-    for(row = topLeftRow;rowCount<3;rowCount++){
-        for(column = topLeftColumn;columnCount<3;columnCount++){
-            if(i != row || j != column){
-                if(grid[row][column]==value) {
-                    return false;
-                }
-            }
-            column++;
-        }
-        columnCount = 0;
-        row++;
-    }
-    return true;
-}
 
 /***************** gridSet *********************/
+/* sets the value of grid slot (i, j) to provided value */
 void gridSet(int **grid, int row, int col, int value){
 	if (grid != NULL)
 		grid[row][col] = value;
 }
 
 /**************** gridGet ********************/
+/* returns the value at grid slot (i, j) */
 int gridGet(int **grid, int row, int col){
 	if (grid != NULL)
 		return grid[row][col];
@@ -164,6 +87,8 @@ int gridGet(int **grid, int row, int col){
 		return -1;
 }
 
+/**************** gridPrint ***************/  
+/* prints the grid */
 void gridPrint(int **grid){
     for(int i = 0;i<9;i++){
         for(int j=0;j<9;j++){
@@ -172,7 +97,9 @@ void gridPrint(int **grid){
         printf("\n");
     }
 }
-/***************** deleteGrid ************/
+
+/***************** gridDelete ************/
+/* frees memory allocated by gridNew */
 void gridDelete(int **grid){
     for(int i = 0;i<9;i++){
         free(grid[i]);
@@ -180,14 +107,4 @@ void gridDelete(int **grid){
     free(grid);
 }
 
-/**************** fiftyFifty ***************/
-int fiftyFifty() {
-	int value = (rand() % 2);
-	return value;
-}
 
-/**************** randNine ***************/
-int randNine() {
-	int value = (rand() % 9) + 1;
-	return value;
-}
