@@ -12,7 +12,6 @@
 #include "grid.h"
 #include "node.h"
 #include "bag.h"
-#include "hashtable.h"
 
 /************** Declarations ***************/
 bag_t * randomValueBag();
@@ -230,16 +229,4 @@ node_t *getRandomNode(int **grid){
     }
 }
 
-/************* gridMatch **************/
-bool gridMatch(int **grid1, int**grid2) {
-	for (int i=0;i<9;i++) {
-		for (int j=0;j<9;j++) {
-			if (grid1[i][j]!=0) {
-				if (grid2[i][j] != grid1[i][j]) {
-					return false;
-				}
-			}
-		}
-	}
-	return true;
-}
+
