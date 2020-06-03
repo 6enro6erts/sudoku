@@ -28,7 +28,7 @@ Next, a DFS algorithm is utilized. Similar to the solve DFS described below, the
 		
 		1. If `solve()` returns a value of 1 (indicating a unique solution), then the node is added to the "stack" bag
 
-		2. Else, the value of the grid slot corresponding to the node is set back to its original value, the zero counter is decremented, the node is added to the "stack" ba			g  
+		2. Else, the value of the grid slot corresponding to the node is set back to its original value, the zero counter is decremented, the node is added to the "stack" bag  
 
 	5. Back to 1
 
@@ -38,7 +38,7 @@ Solve is executed as a two-step process, first prefilling any gimmes, then runni
 
 #### Gimmes
 
-Gimmes are empty spaces in the grid with only a single possible answer. To find these, a gimmeScanner method is called. This method then calls a gimme method at each empty space on the grid, looping until there are no more gimmes. The gimme method checks every value (1-9) and returns true if only one of them is valid and false if more than one (or none) are valid. It additionally fills the slot in the grid with the correct value if it is a "gimme". 
+Gimmes are empty spaces in the grid with only a single possible answer. To find these, a gimmeScanner method is called. This method then calls a gimme method at each empty space on the grid, looping until there are no more gimmes. The gimme method checks every value (1-9) and returns true if only one of them is valid and false if more than one (or none) are valid. It additionally fills the slot in the grid with the correct value if it is a "gimme".
 
 ### DFS 
 
@@ -81,6 +81,14 @@ The main solve method is called by the sudoku function.
 int solve(int **grid, bool print);
 ```
 ### create 
+
+The main create method is called by the sudoku function. 
+```c
+/* creates a grid using function from grid.c, return an unsolved grid  
+/* 
+*/ 
+void create(int** grid);
+```
 
 ### common
 Node, grid, bag, and shared libraries are used to create and manage these structures. This is where checking nodes and the grid can be found, alongside methods for pushing guesses to the bag. 
