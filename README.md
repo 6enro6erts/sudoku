@@ -35,7 +35,8 @@ solve a puzzle template passed as stdin:
 ### Exit Status ###  
   
 0 if success  
-1 if issue with commandline arguments  
+1 if issue with number of commandline arguments 
+2 if unrecognized command line argument
   
   
 ### Assumptions ###  
