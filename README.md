@@ -43,5 +43,7 @@ solve a puzzle template passed as stdin:
 
 -solve reads an input grid with fscanf. All whitespace will be ignored, only the first 81 numbers will be read, and any non integer characters will cause the immediate termination of the program.
 
+### Presentation ###  
 
+Our video presentation can be found here: https://youtu.be/f9ioN4s2UE0
 
