@@ -45,5 +45,5 @@ solve a puzzle template passed as stdin:
 
 ### Presentation ###  
 
-Our video presentation can be found here: https://youtu.be/f9ioN4s2UE0
+Our video presentation can be found here: https://youtu.be/2WwPsVfV0TM
 
