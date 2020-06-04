@@ -30,21 +30,21 @@ int main(int argc, char *argv[]){
         fprintf(stderr,"Incorrect number of arguments\nUsage: ./sudoku command. \nSee readme for more\n");
         return 1;
     }
-    if(strcmp(argv[1],"create")==0){
-    	srand(time(NULL));
-	int **grid = gridNew();
-        create(grid);
-        gridPrint(grid);
-	gridDelete(grid);
+    if(strcmp(argv[1],"create")==0){ //check the arguments  
+    	srand(time(NULL)); //seed the random with time 
+	int **grid = gridNew(); //create a new grid 
+        create(grid); //create a grid 
+        gridPrint(grid);  //print to stdout 
+	    gridDelete(grid); //free memory 
     }
     else if(strcmp(argv[1],"solve")==0){
-        int **grid = gridNew();
-        gridCopy(grid);
-        int numSol = solve(grid,true);	
+        int **grid = gridNew(); //create a new grid 
+        gridCopy(grid); //copy the grid from stdin 
+        int numSol = solve(grid,true);	 //solve and find number of solutions + print first solution
         printf("number of solutions is: %d\n",numSol);
-        gridDelete(grid);
+        gridDelete(grid); //delete the grid 
     }
-    else{
+    else{ //error check for unrecognized command
         fprintf(stderr,"Error, not a valid command\n");
         return 2;
     }

@@ -78,6 +78,7 @@ bool gimme(node_t *node,int **grid){
     int solution;
     int valueCount=0;
 
+    //count the number of solutions and track one of them
     for(int value=1;value<=9;value++){
         nodeSetValue(node,value);
         if(checkNode(node,grid)){
@@ -86,11 +87,11 @@ bool gimme(node_t *node,int **grid){
         }
     }
 
-    if(valueCount ==1){
-        nodeSetValue(node,solution);
-        grid[nodeGetRow(node)][nodeGetColumn(node)] = solution;
-        return true;
-    } else{
+    if(valueCount ==1){ //if one solution (gimme)
+        nodeSetValue(node,solution); //set the node
+        grid[nodeGetRow(node)][nodeGetColumn(node)] = solution; //set the grid 
+        return true; //return true
+    } else{ //else return false
         nodeSetValue(node,0);
         return false;
     }
@@ -100,16 +101,18 @@ bool gimme(node_t *node,int **grid){
 there are no more*/
 void gimmeScanner(int **grid){
     node_t *node;
+    //tracks number of gimmes each loop and ends when there are zero
     for(int gimmeCount = 1; gimmeCount>0;){
-        gimmeCount = 0;
+        gimmeCount = 0; //reset the board
+        //loop through the whole board 
         for(int i = 0; i<9;i++){
             for(int j = 0;j<9;j++){
                 if(grid[i][j]==0){
-                    node = nodeNew(i,j,grid[i][j]);
-                    if(gimme(node,grid)){
+                    node = nodeNew(i,j,grid[i][j]); //create a node at the given slot
+                    if(gimme(node,grid)){ //add a count for each gimme 
                         gimmeCount++;
                     }
-                    nodeDelete(node);
+                    nodeDelete(node); //clear the node
                 }
             }
         }
@@ -122,22 +125,22 @@ void gimmeScanner(int **grid){
 Return True on at least one guess added to bag
 Return false on null node or no valid guesses*/
 bool pushGuesses(node_t *node, int **grid, bag_t *bag){
-    bool returnFlag = false;
-    if(node != NULL){
-        int row = nodeGetRow(node);
+    bool returnFlag = false; //start with false 
+    if(node != NULL){  //error check for null node
+        int row = nodeGetRow(node); 
         int column = nodeGetColumn(node);
         node_t *testnode;
-	bag_t *valueBag = randomValueBag();
+	bag_t *valueBag = randomValueBag(); //create a shuffled bag of 1-9
         for(int i = 1;i<=9;i++){
 	    int value;
 	    node_t *valuenode;
-        valuenode = bag_extract(valueBag);
+        valuenode = bag_extract(valueBag); //pull a value from the bag
 	    value = nodeGetValue(valuenode);
 	    nodeDelete(valuenode);
-	    testnode = nodeNew(row,column,value);
-            if(checkNode(testnode,grid)){
-                bag_insert(bag,testnode);
-                returnFlag = true;
+	    testnode = nodeNew(row,column,value); //create a node at the given location
+            if(checkNode(testnode,grid)){ //if valid 
+                bag_insert(bag,testnode); //insert into the given bag
+                returnFlag = true; //return that there is at least one valid guess
             }
             else nodeDelete(testnode);
         }
@@ -155,16 +158,16 @@ bag_t * randomValueBag() {
 	int j = 0;
 	bag_t *returnBag = bag_new();
 	int trackerArray[9];
-    for(int i = 0;i<9;i++){
+    for(int i = 0;i<9;i++){ //instantiate tracker array to 0 
         trackerArray[i]=0;
     }
-	while (i < 9) {
-		int value = (rand() % 9) + 1;
-		if (!arrayCheck(value, trackerArray)) {
-			trackerArray[j] = value;
+	while (i < 9) { //repeat until 9 items in the bag
+		int value = (rand() % 9) + 1; //add an integer
+		if (!arrayCheck(value, trackerArray)) { //if not in the array 
+			trackerArray[j] = value; //add to the array 
 			j++;
 			node_t *valueNode = nodeNew(1, 1, value);
-			bag_insert(returnBag, valueNode);
+			bag_insert(returnBag, valueNode); //add to the bag
 			i++;
 		}
 	}
